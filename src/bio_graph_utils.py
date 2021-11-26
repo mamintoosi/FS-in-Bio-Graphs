@@ -3,7 +3,7 @@
 #    Copyright (C) 2021-2029 by
 #    Mahmood Amintoosi <m.amintoosi@gmail.com>
 #    All rights reserved.
-#    BSD license.
+#    MIT license.
 """Algorithms used in bio-graphs."""
 
 # توابع معمول موردنیاز برای عملیات گراف
@@ -30,7 +30,7 @@ pd.options.display.float_format = "{:.2f}".format
 # Compute Graph Features
 def graph_features(G, weight=None, normalize=True):
     """
-    Computer graph nodes attributes
+    Compute graph nodes attributes
 
     Parameters
     ----------
@@ -61,6 +61,7 @@ def graph_features(G, weight=None, normalize=True):
     with tqdm(total=6) as progress_bar:
         d = G.degree(weight=weight)
         df['degree'] = ([v[1] for v in d]) 
+        print(df['degree'])
         progress_bar.update(1)
         df['degree_cent'] = pd.Series(nx.degree_centrality(G))
         progress_bar.update(1)
@@ -162,9 +163,9 @@ def make_graph_from_df(df,node_objects,edge_objects):
 
 
 
-def rank_using_graph_features(subG): #, min_count, node_objects, edge_objects, data_dir, output_dir, working_file_name):
+def rank_using_graph_features(subG, weight=None): #, min_count, node_objects, edge_objects, data_dir, output_dir, working_file_name):
     # print('Computing features...\n')
-    gf_df = graph_features(subG)  # graph features data frame
+    gf_df = graph_features(subG, weight=weight)  # graph features data frame
     # print(gf_df)
 
     # file_name = data_dir+node_objects+"_features_min_count_" + \

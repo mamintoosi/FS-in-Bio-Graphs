@@ -40,7 +40,7 @@ def obj_fun(true_list, pred_list,index):
 
 def get_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--ds_name', type = str, default = 'stomach')
+    parser.add_argument('--dataset_name', type = str, default = 'stomach')
     args = parser.parse_args()
 
     return args
@@ -59,8 +59,10 @@ if __name__ == '__main__':
     working_dir = 'data/'
     working_file_name = 'AC_Met_Plant.xlsx'
     # GT_file_name = 'LR_Met_Plant.xlsx'
-    if args.ds_name.lower() == 'stomach':
-        GT_file_name = 'Stomach AntiCancer Metabolites.xlsx'
+    if args.dataset_name.lower() == 'stomach':
+        GT_file_name = 'Stomach.xlsx'
+    elif 'wound' in args.dataset_name.lower():
+        GT_file_name = 'Wound_healing.xlsx'
     node_objects = 'Plant'
     edge_objects = 'Met'
 
@@ -76,7 +78,7 @@ if __name__ == '__main__':
     # به عبارت دیگه حداقل مین‌کانت متابولیت داشتن
     # نگهداری ستونهای با بیش از یا مساوی با ۵ عنصر
     # min_count = 2
-    min_count_list = np.arange(1,8).tolist()
+    min_count_list = np.arange(1,3).tolist() # 1,8
 
     minCount = min(min_count_list)
 
@@ -114,6 +116,17 @@ if __name__ == '__main__':
 
             G,dfct,bow = make_graph_from_df(df,node_objects,edge_objects)
 
+            # اضافه کردن وزن لبه‌ی متابولیت‌های مشترک
+            # print('Number of Metabolites in dfct: ', len(dfct.columns))
+            second_graph_edges = list(true_df[edge_objects].unique())
+            # print('Number of Metabolites in Wound healing: ',len(second_graph_edges))
+            intersected_edges = set(dfct.columns).intersection(set(second_graph_edges))
+            # print('Number of intersection Meabolites:', len(intersected_edges))
+            for row in range(dfct.shape[0]):
+                for e in intersected_edges:
+                    if dfct.iloc[row][e] != 0:
+                        dfct.iloc[row][e] += 1
+
             # پیدا کردن بزرگترین زیرگراف همبند
             # print('Computing the largest connected graph...\n')
             subG = largest_con_com(dfct, G)
@@ -128,7 +141,7 @@ if __name__ == '__main__':
             # print('Sub graph info: ', dfct_subG.shape)
 
             # print('Computing the graph features...\n')
-            gf_df, gf_df_sorted = rank_using_graph_features(subG) #, min_count, node_objects, \
+            gf_df, gf_df_sorted = rank_using_graph_features(subG)#, weight='weight') #, min_count, node_objects, \
                 # edge_objects, data_dir, output_dir, working_file_name)
 
             n_features = gf_df.shape[1]-1
@@ -144,7 +157,8 @@ if __name__ == '__main__':
                 # cols = list(idx)
                 cols_s = list(idx) # columns with feature_sum
                 cols_s.append(-1)
-                selected_df = gf_df.iloc[:, cols_s]
+                # SettingWithCopyWarning دیپ کپی برای اجتناب از خطای 
+                selected_df = gf_df.iloc[:, cols_s].copy(deep=True)
                 # print(cols,cols_s,selected_df.shape)#,cols_s)
                 n_cols = selected_df.shape[1]-1
                 features_sum = selected_df.iloc[:,:n_cols].sum(axis=1)
