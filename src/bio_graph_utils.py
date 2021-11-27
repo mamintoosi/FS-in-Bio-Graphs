@@ -61,7 +61,7 @@ def graph_features(G, weight=None, normalize=True):
     with tqdm(total=6) as progress_bar:
         d = G.degree(weight=weight)
         df['degree'] = ([v[1] for v in d]) 
-        print(df['degree'])
+        # print(df['degree'])
         progress_bar.update(1)
         df['degree_cent'] = pd.Series(nx.degree_centrality(G))
         progress_bar.update(1)
