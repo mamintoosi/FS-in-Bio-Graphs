@@ -26,6 +26,8 @@ import matplotlib.pyplot as plt
 from pandas import DataFrame
 pd.options.display.float_format = "{:.2f}".format
 
+import seaborn as sns
+
 
 # Compute Graph Features
 def graph_features(G, weight=None, normalize=True):
@@ -399,3 +401,56 @@ def df_2_col_to_spread(file_prefix='LR',col_name='Met'):
 # این تابع برای وقتی است که یک لیست از جوابهای درست و توصیه شده دیتافریم
 # مثل خروجی لاتک 
 # tag-recommendation
+
+def df_bar_plot(df, img_file_name):
+# نمایش نمودارهای فراوانی
+
+    print('Number of unique Metabolites: ', len(df['Met'].unique()))
+    print('Min Number of Metabolites in each Plant: ', df['Met'].value_counts().min())
+    print('Max Number of Metabolites in each Plant: ', df['Met'].value_counts().max())
+    print('Avg Number of Metabolites in each Plant: ', round(df['Met'].value_counts().mean()))
+
+    # fig, ax =plt.subplots(2,1,sharex=False, figsize=(5,10))
+    # Color Paletts
+    # https://stackoverflow.com/questions/48114473/scaling-plot-sizes-with-matplotlib     
+
+    sns.countplot(data = df, y='Met', order=df['Met'].value_counts('Met').iloc[:10].index,\
+        palette="Blues_r")#, ax=ax[0])
+    # ax[0].tick_params(axis='x', rotation=90)
+    # ax[0].set(ylabel='10 Most frequent Metabolites')
+    # ax[0].
+    plt.xlabel('Number of Plants having each Met')
+
+    print('Number of unique Plants: ', len(df['Plant'].unique()))
+    print('Min Number of Plants having each Metabolite: ', df['Plant'].value_counts().min())
+    print('Max Number of Plants having each Metabolite: ', df['Plant'].value_counts().max())
+    print('Avg Number of Plants having each Metabolite: ', round(df['Plant'].value_counts().mean()))
+
+    plt.savefig(img_file_name+"_Plants.png", bbox_inches='tight', dpi=300)
+    plt.clf()
+    
+    sns.countplot(data = df, y='Plant', order=df['Plant'].value_counts('Plant').iloc[:10].index,\
+        palette="Purples_r")#, ax=ax[1])
+    # ax[1].tick_params(axis='x', rotation=90)
+    # ax[1].set(ylabel='10 Most frequent Plants')
+    # ax[1].
+    plt.xlabel('Number of Metabolites in each Plant')
+    
+    # fig.clf()
+    plt.savefig(img_file_name+"_Mets.png", bbox_inches='tight', dpi=300)
+#     sns.set(style="whitegrid")#"darkgrid")
+#     total = float(len(met_counts)) # one person per row 
+#     ax = sns.countplot(x=df_403p_interscted_met_count['met_count'],\
+#                     edgecolor=".2",data=df_403p_interscted_met_count ) # for Seaborn version 0.7 and more
+#     met_counts_sorted_index = met_counts.sort_index(ascending=True).values
+#     met_counts_sorted_vals = met_counts.sort_index(ascending=True).index.values
+#     for i,p in enumerate(ax.patches):
+#         if(met_counts_sorted_index[i]<3):
+#     #         print(p.get_x(),i,met_counts_sorted_index[i],met_counts_sorted_vals[i])
+#             idx = df_403p_interscted_met_count[df_403p_interscted_met_count['met_count']==met_counts_sorted_vals[i]]
+#             name = idx.index.format()
+#             height = p.get_height()
+#             ax.text(p.get_x()+p.get_width()/2.,
+#                 height + 3, name,
+#                 ha="center",rotation =90) 
+#     plt.show()

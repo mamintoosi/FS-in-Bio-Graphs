@@ -3,7 +3,7 @@
 #    Copyright (C) 2021-2029 by
 #    Mahmood Amintoosi <m.amintoosi@gmail.com>
 #    All rights reserved.
-#    BSD license.
+#    MIT license.
 """Dataset Statistics"""
 
 from pandas import ExcelWriter
@@ -21,8 +21,9 @@ import argparse
 from bio_graph_utils import * #make_graph_from_df
 # from feature_selection import powerset, obj_fun
 import seaborn as sns
+import matplotlib
 from matplotlib_venn import venn2, venn2_circles
-
+from pathlib import Path
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -43,7 +44,7 @@ if __name__ == '__main__':
     data_dir = 'data/'
     output_dir = 'results/'
     working_dir = 'data/'
-    working_file_name = 'AC_Met_Plant.xlsx'
+    working_file_name = 'AC.xlsx'
     # GT_file_name = 'LR_Met_Plant.xlsx'
     if args.dataset_name.lower() == 'stomach':
         GT_file_name = 'Stomach.xlsx'
@@ -66,12 +67,19 @@ if __name__ == '__main__':
     # در فرم نود=گیاه، لیست گیاهانی که خاصیت ضد سرطانی آنها اثبات شده است
     working_node_set = set(wdf[node_objects].unique())
     gt_node_set = set(true_df[node_objects].unique())
-    venn2([working_node_set ,gt_node_set], set_labels=(working_file_name,args.dataset_name))
-    print('Common '+node_objects+'s')
-    plt.show()
+    venn2([working_node_set ,gt_node_set], set_labels=(Path(working_file_name).stem,args.dataset_name))
+    # print('Common '+node_objects+'s')
+    title = "Common "+node_objects+"s"# of "+Path(working_file_name).stem + " and " + args.dataset_name
+    plt.title(title)
+    matplotlib.pyplot.savefig("results/"+Path(working_file_name).stem+"_"+ args.dataset_name+\
+        "_Common_"+node_objects+"s_ven.png", bbox_inches='tight', dpi=300)
     
+    matplotlib.pyplot.clf()
     working_edge_set = set(wdf[edge_objects].unique())
     gt_edge_set = set(true_df[edge_objects].unique())
-    venn2([working_edge_set ,gt_edge_set], set_labels=(working_file_name,args.dataset_name))
-    print('Common '+edge_objects+'s')
-    plt.show()
+    venn2([working_edge_set ,gt_edge_set], set_labels=(Path(working_file_name).stem,args.dataset_name))
+    title = "Common "+edge_objects+"s"# of "+Path(working_file_name).stem + " and " + args.dataset_name
+    plt.title(title)
+    matplotlib.pyplot.savefig("results/"+Path(working_file_name).stem+"_"+ args.dataset_name+\
+        "_Common_"+edge_objects+"s_ven.png", bbox_inches='tight', dpi=300)
+

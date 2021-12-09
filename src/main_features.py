@@ -3,7 +3,7 @@
 #    Copyright (C) 2021-2029 by
 #    Mahmood Amintoosi <m.amintoosi@gmail.com>
 #    All rights reserved.
-#    BSD license.
+#    MIT license.
 """Main for feature selection"""
 
 # برنامه انتخاب ویژگی‌هایی از گراف که در انتخاب نودهای ضد سرطان مؤثرتر هستند
@@ -54,7 +54,12 @@ if __name__ == '__main__':
     data_dir = 'data/'
     output_dir = 'results/'
     working_dir = 'data/'
+
+    # فایل زیر حاوی متابولیت‌هایی است که خاصیت ضدسرطانی آنها اثبات شده است، 
+    # به همراه تعدادی از گیاهان دارای این متابولیت‌ها
     working_file_name = 'AC_Met_Plant.xlsx'
+
+    # فایلهای زیر حاوی گیاهانی هست که خاصیت ضد سرطانی آنها اثبات است
     # GT_file_name = 'LR_Met_Plant.xlsx'
     if args.dataset_name.lower() == 'stomach':
         GT_file_name = 'Stomach.xlsx'
