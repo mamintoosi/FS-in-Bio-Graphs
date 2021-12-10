@@ -19,7 +19,7 @@ from tqdm.notebook import tqdm
 import networkx as nx
 import math
 from sklearn import preprocessing
-import ml_metrics
+# import ml_metrics
 # import recmetrics
 from sklearn.feature_extraction.text import CountVectorizer
 import matplotlib.pyplot as plt
@@ -406,14 +406,17 @@ def df_bar_plot(df, img_file_name):
 # نمایش نمودارهای فراوانی
 
     print('Number of unique Metabolites: ', len(df['Met'].unique()))
-    print('Min Number of Metabolites in each Plant: ', df['Met'].value_counts().min())
-    print('Max Number of Metabolites in each Plant: ', df['Met'].value_counts().max())
-    print('Avg Number of Metabolites in each Plant: ', round(df['Met'].value_counts().mean()))
+    print('Min تعداد تکرار یک متابولیت در گیاهان: ', df['Met'].value_counts().min())
+    print('Max تعداد تکرار یک متابولیت در گیاهان: ', df['Met'].value_counts().max())
+    print('Avg تعداد تکرار یک متابولیت در گیاهان: ', round(df['Met'].value_counts().mean()))
+    m = df['Met'].value_counts().mode()
+    print('Mode تعداد تکرار یک متابولیت در گیاهان: ', m.iloc[0])
 
     # fig, ax =plt.subplots(2,1,sharex=False, figsize=(5,10))
     # Color Paletts
     # https://stackoverflow.com/questions/48114473/scaling-plot-sizes-with-matplotlib     
 
+    # sns.countplot(data = df, y='Met', palette="Blues_r")
     sns.countplot(data = df, y='Met', order=df['Met'].value_counts('Met').iloc[:10].index,\
         palette="Blues_r")#, ax=ax[0])
     # ax[0].tick_params(axis='x', rotation=90)
@@ -425,15 +428,15 @@ def df_bar_plot(df, img_file_name):
     print('Min Number of Plants having each Metabolite: ', df['Plant'].value_counts().min())
     print('Max Number of Plants having each Metabolite: ', df['Plant'].value_counts().max())
     print('Avg Number of Plants having each Metabolite: ', round(df['Plant'].value_counts().mean()))
+    m = df['Plant'].value_counts().mode()
+    print('Mode Number of Plants having each Metabolite: ', m.iloc[0])
 
     plt.savefig(img_file_name+"_Plants.png", bbox_inches='tight', dpi=300)
     plt.clf()
     
+    # sns.countplot(data = df, y='Plant', palette="Purples_r")
     sns.countplot(data = df, y='Plant', order=df['Plant'].value_counts('Plant').iloc[:10].index,\
         palette="Purples_r")#, ax=ax[1])
-    # ax[1].tick_params(axis='x', rotation=90)
-    # ax[1].set(ylabel='10 Most frequent Plants')
-    # ax[1].
     plt.xlabel('Number of Metabolites in each Plant')
     
     # fig.clf()
