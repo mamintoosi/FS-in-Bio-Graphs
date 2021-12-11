@@ -144,6 +144,8 @@ if __name__ == '__main__':
             # print(indices)
             APK = []
             scores = []
+            DF_list= list()
+            SDF_list= list()
             for set_no, idx in enumerate(indices):
                 cols_s = list(idx) # columns with feature_sum
                 cols_s.append(-1)
@@ -154,6 +156,10 @@ if __name__ == '__main__':
                 features_sum = selected_df.iloc[:,:n_cols].sum(axis=1)
                 selected_df['features_sum'] = features_sum
                 selected_df_sorted = selected_df.sort_values(by='features_sum', ascending=False)
+                
+                DF_list.append(selected_df)
+                SDF_list.append(selected_df_sorted)
+                
                 pred_list = list(selected_df_sorted.index.values)
                 # print(obj_fun(true_list,pred_list))
 
@@ -202,7 +208,7 @@ if __name__ == '__main__':
         features_list += "\n"+s
     ax.text(40, 0,features_list  , fontsize=12) #add text
 
-    png_file_name = 'results/FS_{}_{}_{}_{}_mc{:d}_k{:d}-{:d}_apk.jpg'.format(working_file_name[:2], GT_file_name[:2], \
+    png_file_name = 'results/FS_{}_{}_{}_{}_mc{:d}_k{:d}-{:d}_apk.png'.format(working_file_name[:2], GT_file_name[:2], \
         node_objects, edge_objects, min_count, index[0],index[-1])
     plt.savefig(png_file_name)
 
@@ -215,8 +221,10 @@ if __name__ == '__main__':
         node_objects, edge_objects, min_count_list[0], min_count_list[-1])
     writer = ExcelWriter(xls_file_name)
     jadval.to_excel(writer, sheet_name='jadval')  # , index=False)
-    gf_df_sorted.to_excel(writer, sheet_name='gf_df_sorted')  # , index=False)
-    gf_df.to_excel(writer, sheet_name='gf_df')  # , index=False)
+    # gf_df_sorted.to_excel(writer, sheet_name='gf_df_sorted')  # , index=False)
+    # gf_df.to_excel(writer, sheet_name='gf_df')  # , index=False)
+    SDF_list[x].to_excel(writer, sheet_name='gf_df_sorted')  # , index=False)
+    DF_list[x].to_excel(writer, sheet_name='gf_df')  # , index=False)
     writer.save()
 
     # چاپ لیست ویژگی‌ها

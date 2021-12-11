@@ -23,6 +23,8 @@ import argparse
 from bio_graph_utils import * #make_graph_from_df
 # from feature_selection import powerset, obj_fun
 import seaborn as sns
+import pickle
+from pathlib import Path
 
 # # توابع زیر رو از دو فایل دیگه اینجا آوردم که ایمپورت نخواسته باشه و اون بسته دیگه ای که در ویندوز ندارم
 
@@ -131,7 +133,11 @@ if __name__ == '__main__':
             with open(objs_file_name, 'wb') as f:  # Python 3: open(..., 'wb')
                 pickle.dump([working_file_name, GT_file_name, node_objects,\
                             edge_objects,G,dfct,bow,subG], f)
-            
+
+# Getting back the objects:
+# with open('objs.pkl','rb') as f:  # Python 3: open(..., 'rb')
+#     obj0, obj1, obj2 = pickle.load(f)
+
 #             Save to csv file to show with Graphia
             nodes_list = list(subG.nodes())
             A = nx.adjacency_matrix(subG)
