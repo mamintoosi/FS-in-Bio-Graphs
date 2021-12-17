@@ -109,6 +109,7 @@ if __name__ == '__main__':
             G,dfct,bow = make_graph_from_df(df,node_objects,edge_objects)
 
             # اضافه کردن وزن لبه‌ی متابولیت‌های مشترک
+            # در حال حاضر فقط یک واحد اضافه میشه که میشه به نسبت تکرارش در مجموعه دوم اضافه بشه
             # print('Number of Metabolites in dfct: ', len(dfct.columns))
             second_graph_edges = list(true_df[edge_objects].unique())
             # print('Number of Metabolites in Wound healing: ',len(second_graph_edges))
@@ -223,8 +224,11 @@ if __name__ == '__main__':
     jadval.to_excel(writer, sheet_name='jadval')  # , index=False)
     # gf_df_sorted.to_excel(writer, sheet_name='gf_df_sorted')  # , index=False)
     # gf_df.to_excel(writer, sheet_name='gf_df')  # , index=False)
-    SDF_list[x].to_excel(writer, sheet_name='gf_df_sorted')  # , index=False)
-    DF_list[x].to_excel(writer, sheet_name='gf_df')  # , index=False)
+
+    x_max, x_min = df_mean_score['AP@k'].idxmax(), df_mean_score['AP@k'].idxmin()
+    SDF_list[x_max].to_excel(writer, sheet_name='gf_df_max_sorted')  # , index=False)
+    SDF_list[x_min].to_excel(writer, sheet_name='gf_df_min_sorted')  # , index=False)
+    DF_list[x_max].to_excel(writer, sheet_name='gf_df_max')  # , index=False)
     writer.save()
 
     # چاپ لیست ویژگی‌ها
