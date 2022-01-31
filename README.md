@@ -33,18 +33,12 @@ karateclub		1.2.1
 ```
 
 ### Run on Google Colab
-https://colab.research.google.com/github/mamintoosi/FS-in-Bio-Graphs/blob/master/TODO.ipynb
+https://colab.research.google.com/github/mamintoosi/FS-in-Bio-Graphs/blob/master/FS_in_Bio_Graphs.ipynb
 
 ### Datasets
 <p align="justify">
-We used some of the citation network datasets, which are accessible from <a href=https://pytorch-geometric.readthedocs.io/en/latest/modules/datasets.html>
-To Do </a>
+All of the datasets used here are accessible from <em>data</em> folder.
 </p>
 
-#### Model options
-```
-  --dataset-name		STR		Dataset Name					Default is Breast
-```
--------------------------------------------------------
 
 [![Github All Releases](https://img.shields.io/github/downloads/mamintoosi/FS-in-Bio-Graphs/total.svg)]()
