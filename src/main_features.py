@@ -197,7 +197,7 @@ if __name__ == '__main__':
     #             data=df_mean_score)
     x, y = df_mean_score['AP@k'].idxmax(),df_mean_score['AP@k'].max()
     # ax=axes[1, 0]
-    ax.scatter(x, y, marker='o', color='r', s=100)
+    ax.scatter(x, y, marker='o', color='g', s=100)
     f_names = list(gf_df.keys().format())
     best_idx = int(x)
     best_features = [f_names[i] for i in indices[best_idx]]
@@ -207,7 +207,18 @@ if __name__ == '__main__':
         #     features_list = s
         # else:
         features_list += "\n"+s
-    ax.text(40, 0,features_list  , fontsize=12) #add text
+    ax.text(40, 0, features_list, fontsize=12, color='g') #add text
+
+    x, y = df_mean_score['AP@k'].idxmin(),df_mean_score['AP@k'].min()
+    # ax=axes[1, 0]
+    ax.scatter(x, y, marker='o', color='r', s=100)
+    f_names = list(gf_df.keys().format())
+    best_idx = int(x)
+    best_features = [f_names[i] for i in indices[best_idx]]
+    features_list = '{:d}th subset,\nwhich contains\n{:d} elements:'.format(best_idx,len(best_features))
+    for i,s in enumerate(best_features):
+        features_list += "\n"+s
+    ax.text(40, 0, features_list, fontsize=12, color='r') #add text
 
     png_file_name = 'results/FS_{}_{}_{}_{}_mc{:d}_k{:d}-{:d}_apk.png'.format(working_file_name[:2], GT_file_name[:2], \
         node_objects, edge_objects, min_count, index[0],index[-1])
