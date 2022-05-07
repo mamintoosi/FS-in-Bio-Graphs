@@ -20,7 +20,7 @@ This repository provides a Python implementation of FS-in-Bio-Graphs as describe
 
 > Feature Selection in Bio-Graphs,
 > Mahmood Amintoosi, Eisa Kohan
-> 2021
+> 2022
 
 ### Requirements
 The codebase is implemented in Python 3.7.11 on Google colab. package versions used for development are just below.
@@ -33,7 +33,7 @@ karateclub		1.2.1
 ```
 
 ### Run on Google Colab
-https://colab.research.google.com/github/mamintoosi/FS-in-Bio-Graphs/blob/master/FS_in_Bio_Graphs.ipynb
+https://colab.research.google.com/github/mamintoosi/FS-in-Bio-Graphs/blob/master/FS_in_Bio_Graphs_Breast.ipynb
 
 ### Datasets
 <p align="justify">
