@@ -169,14 +169,14 @@ if __name__ == '__main__':
                     score = obj_fun(true_list, pred_list, apk_index)
                     scores.append(score)
                     jadval_row_no += 1
-                    jadval.loc[jadval_row_no] = [min_count, set_no, i_apk_index, score]
+                    jadval.loc[jadval_row_no] = [min_count, set_no+1, i_apk_index, score]
             progress_bar.update(1) # update progress
 
 
     # رسم نمودار تکی 
     min_count = 1
     # m, n = 2, 3
-    fig, ax = plt.subplots(1, 1, figsize=(18, 10))        
+    fig, ax = plt.subplots(1, 1, figsize=(8, 5))        
 
     #  show error bands
     df = jadval[(jadval['Min Count']==min_count)]
@@ -197,11 +197,11 @@ if __name__ == '__main__':
     #             data=df_mean_score)
     x, y = df_mean_score['AP@k'].idxmax(),df_mean_score['AP@k'].max()
     # ax=axes[1, 0]
-    ax.scatter(x, y, marker='o', color='g', s=100)
+    ax.scatter(x+1, y, marker='o', color='g', s=100)
     f_names = list(gf_df.keys().format())
     best_idx = int(x)
     best_features = [f_names[i] for i in indices[best_idx]]
-    features_list = '{:d}th subset,\nwhich contains\n{:d} elements:'.format(best_idx,len(best_features))
+    features_list = '{:d}th subset,\nwhich contains\n{:d} elements:'.format(best_idx+1,len(best_features))
     for i,s in enumerate(best_features):
         # if i==0:
         #     features_list = s
@@ -211,11 +211,11 @@ if __name__ == '__main__':
 
     x, y = df_mean_score['AP@k'].idxmin(),df_mean_score['AP@k'].min()
     # ax=axes[1, 0]
-    ax.scatter(x, y, marker='o', color='r', s=100)
+    ax.scatter(x+1, y, marker='o', color='r', s=100)
     f_names = list(gf_df.keys().format())
     best_idx = int(x)
     best_features = [f_names[i] for i in indices[best_idx]]
-    features_list = '{:d}th subset,\nwhich contains\n{:d} elements:'.format(best_idx,len(best_features))
+    features_list = '{:d}th subset,\nwhich contains\n{:d} elements:'.format(best_idx+1,len(best_features))
     for i,s in enumerate(best_features):
         features_list += "\n"+s
     ax.text(x, 0, features_list, fontsize=12, color='r') #add text

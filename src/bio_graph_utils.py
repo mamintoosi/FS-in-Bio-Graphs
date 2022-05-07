@@ -406,11 +406,11 @@ def df_bar_plot(df, img_file_name):
 # نمایش نمودارهای فراوانی
 
     print('Number of unique Metabolites: ', len(df['Met'].unique()))
-    print('Min تعداد تکرار یک متابولیت در گیاهان: ', df['Met'].value_counts().min())
-    print('Max تعداد تکرار یک متابولیت در گیاهان: ', df['Met'].value_counts().max())
-    print('Avg تعداد تکرار یک متابولیت در گیاهان: ', round(df['Met'].value_counts().mean()))
+    print('Min  number of replicates of a metabolite in plants: ', df['Met'].value_counts().min())
+    print('Max  number of replicates of a metabolite in plants: ', df['Met'].value_counts().max())
+    print('Avg  number of replicates of a metabolite in plants: ', round(df['Met'].value_counts().mean()))
     m = df['Met'].value_counts().mode()
-    print('Mode تعداد تکرار یک متابولیت در گیاهان: ', m.iloc[0])
+    # print('Mode  number of replicates of a metabolite in plants: ', m.iloc[0])
 
     # fig, ax =plt.subplots(2,1,sharex=False, figsize=(5,10))
     # Color Paletts
@@ -429,7 +429,7 @@ def df_bar_plot(df, img_file_name):
     print('Max Number of Plants having each Metabolite: ', df['Plant'].value_counts().max())
     print('Avg Number of Plants having each Metabolite: ', round(df['Plant'].value_counts().mean()))
     m = df['Plant'].value_counts().mode()
-    print('Mode Number of Plants having each Metabolite: ', m.iloc[0])
+    # print('Mode Number of Plants having each Metabolite: ', m.iloc[0])
 
     plt.savefig(img_file_name+"_Plants.png", bbox_inches='tight', dpi=300)
     plt.clf()
