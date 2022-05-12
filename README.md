@@ -14,7 +14,9 @@ A Python implementation of "Feature Selection in Bio Graphs"
 ### Abstract
 
 <p align="justify">
-Cancer is one of the most important health problems around the world.  Recently, the identifying and introducing of effective metabolites of plants in the prevention and treatment of cancer has achieved much more attention. However, there is no theoretical method to determine the efficiency of a plant or metabolite in the treatment of cancer without the need of laboratory studies. One of the graphs applications in life sciences is to show the connectivity between different elements to discover their relationships. In this study, graph theory and network analysis approaches are employed to introduce a list of anti-cancer plants and metabolites. First, two separate lists of plants and metabolites whose anti-cancer properties have been approved are prepared. Then, the metabolites in anti-cancer plants and plants containing anti-cancer metabolites are analyzed in the form of networks of plants/metabolites. Herein, in addition to the introduction of the best and most effective new anti-breast cancer plants and metabolites, a new method -inspired form recommender systems- is proposed to rank the anti-cancer properties of plants based on their metabolites. A similar approach is used for metabolites’ recommendation.</p>
+Motivation: Every year tremendous experimental analysis has been done for evaluation of anti-cancer properties of plants. A good ranked list of potential anti-cancer plants which rised out of veri-fied anti-cancer metabolites, reduces the time and cost for evaluating plants; otherwise, we charged for testing unrelated plants. Ranked list produced by analyzing plant-metabolite biological graphs are candidate for such situation. Graph nodes are ranked according to some graph features. A prob-lem with this approach is how to select the good features of graphs. In this paper a metric used in information retrieval and recommender systems was employed for comparing two different ranked list. In an information retrieval system such as search engines, a good system should show the top results first. A metric named Average Precision (AP) is used here for discriminating different lists, resulted from different features. The AP is a measure that takes in a ranked list of N recommenda-tions and compares it to a list of the true set of "correct" or "relevant" items. AP rewards for having a lot of "correct" (relevant) recommendations in the list, and rewards for putting the most likely cor-rect recommendations at the top. We build a network of similarity of plants according to their com-mon metabolites. After that, with various combinations of the graph features, the plants are ranked. The subset of features which produces the ranked list with higher AP score is considered as the best features for anti-cancer plant recommendation.
+Results:   The proposed method could be employed to select the best graph features in screening of anti-cancer plants from an unverified plants list. So that, the plant with higher score in the list have higher chance to have anti-cancer properties. Although, different graph features are applicable for anti-cancer plant recommendation in each cancer type.
+</p>
 
 This repository provides a Python implementation of FS-in-Bio-Graphs as described in the draft paper:
 
@@ -22,23 +24,23 @@ This repository provides a Python implementation of FS-in-Bio-Graphs as describe
 > Mahmood Amintoosi, Eisa Kohan
 > 2022
 
+
 ### Requirements
-The codebase is implemented in Python 3.7.11 on Google colab. package versions used for development are just below.
-```
-torch-scatter 		2.0.8
-torch-sparse		0.6.11
-torch-geometric		1.7.2
-texttable		1.6.4
-karateclub		1.2.1
-```
+The codebase is implemented in Python 3.7.11 on Google colab. 
 
 ### Run on Google Colab
-https://colab.research.google.com/github/mamintoosi/FS-in-Bio-Graphs/blob/master/FS_in_Bio_Graphs_Breast.ipynb
+https://colab.research.google.com/github/mamintoosi/FS-in-Bio-Graphs/blob/master/FS_in_Bio_Graphs.ipynb
 
 ### Datasets
 <p align="justify">
 All of the datasets used here are accessible from <em>data</em> folder.
 </p>
 
+### Results
+The best graph features for Breast anti-cancer plant recommendation
+![Stomach](results%5CFS_AC_St_Plant_Met_mc1_k1-9_apk.png)
+
+The best graph features for Stomach anti-cancer plant recommendation
+![Breast](results%5CFS_AC_Br_Plant_Met_mc1_k1-9_apk.png)
 
 [![Github All Releases](https://img.shields.io/github/downloads/mamintoosi/FS-in-Bio-Graphs/total.svg)]()
