@@ -35,10 +35,7 @@ All of the datasets used here are accessible from <em>data</em> folder.
 </p>
 
 ### Results
-The best graph features for Breast anti-cancer plant recommendation
-![Stomach](results%5CFS_AC_St_Plant_Met_mc1_k1-9_apk.png)
-
 The best graph features for Stomach anti-cancer plant recommendation
-![Breast](results%5CFS_AC_Br_Plant_Met_mc1_k1-9_apk.png)
+![Stomach](results%5CFS_AC_St_Plant_Met_mc1_k1-9_apk.png)
 
 [![Github All Releases](https://img.shields.io/github/downloads/mamintoosi/FS-in-Bio-Graphs/total.svg)]()
