@@ -6,7 +6,6 @@ Feature Selection for Anti-Cancer Plant Recommendation
 [![GitHub license](https://img.shields.io/github/license/mamintoosi/FS-in-Bio-Graphs)](https://github.com/mamintoosi/FS-in-Bio-Graphs/blob/main/LICENSE)
  
  
-A Python implementation of "Feature Selection for Anti-Cancer Plant Recommendation", paper submitted to BioMath, UMZ
 <p align="center">
   <img width="600" src="doc/header.png">
 </p>
@@ -16,11 +15,11 @@ A Python implementation of "Feature Selection for Anti-Cancer Plant Recommendati
 <p align="justify">
 Every year tremendous experimental analysis has been done for evaluation of anti-cancer properties of plants. A good ranked list of potential anti-cancer plants which raised out of verified anti-cancer metabolites, reduces the time and cost for evaluating plants; otherwise, we charged for testing unrelated plants. Ranked list produced by analyzing plant-metabolite biological graphs are candidate for such situation. Graph nodes are ranked according to some graph features. A problem with this approach is how to select the good features of graphs. In this paper a metric used in information retrieval and recommender systems is employed for comparing two different ranked list. In an information retrieval system such as search engines, a good system should show the top results first. A metric named Average Precision is used here for discriminating different lists, resulted from different features. We build a network of similarity of plants according to their common metabolites. After that, with various combinations of the graph features, the plants are ranked. The subset of features which produces the ranked list with higher AP score is considered as the best features for anti-cancer plant recommendation. The proposed method could be employed to select the best graph features in screening of anti-cancer plants from an unverified plants list. So that, the plant with higher score in the list have higher chance to have anti-cancer properties.</p>
 
-This repository provides a Python implementation of FS-in-Bio-Graphs as described in the draft paper:
+This repository provides a Python implementation of the following draft paper:
 
 > Feature Selection for Anti-Cancer Plant Recommendation"
 > Mahmood Amintoosi, Eisa Kohan
-> 2022
+> 2022, BioMath, UMZ
 
 
 ### Requirements
