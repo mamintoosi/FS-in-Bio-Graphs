@@ -19,7 +19,6 @@ This repository provides a Python implementation of the following draft paper:
 
 > Feature Selection for Anti-Cancer Plant Recommendation"
 > Mahmood Amintoosi, Eisa Kohan
-> 2022, BioMath, UMZ
 
 
 ### Requirements
@@ -36,5 +35,8 @@ All of the datasets used here are accessible from <em>data</em> folder.
 ### Results
 The best graph features for Stomach anti-cancer plant recommendation
 ![Stomach](results/FS_AC_St_Plant_Met_mc1_k1-9_apk.png)
+
+The best graph features for Breast anti-cancer plant recommendation
+![Breast](results/FS_AC_Br_Plant_Met_mc1_k1-9_apk.png)
 
 [![Github All Releases](https://img.shields.io/github/downloads/mamintoosi/FS-in-Bio-Graphs/total.svg)]()
